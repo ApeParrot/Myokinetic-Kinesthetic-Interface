@@ -7,4 +7,5 @@ To run the data analysis code the following dependencies are required:
 installation of Mujoco is with the Python commands:
 
 python.exe -m pip install --upgrade pip
+
 pip install mujoco
