@@ -88,28 +88,14 @@ qpos(1) = 0;
 % Description of the simulators DoFs:
 % qpos(1:3) = hand position in space
 % qpos(4:6) = hand orientation in space
-% qpos(7) weird or does not move
+% qpos(7) does not move
 % qpos(8:10) = wrist degrees of freedom (pron/sup, rad/uln dev, flex/ext)
 % qpos(11) = thumb ab/add
 % qpos(12) = thumb MCP flex
 % qpos(13) = thumb PIP flex
 % qpos(14) = thumb DIP flex
-% qpos(15) = index ab/add
-% qpos(16) = index MCP flex
-% qpos(17) = index IP flex
-% qpos(18) = index DIP flex
-% qpos(19) = middle MCP flex
-% qpos(20) = middle IP flex
-% qpos(21) = middle DIP flex
-% qpos(22) = ring ab/add
-% qpos(23) = ring MCP flex
-% qpos(24) = ring IP flex
-% qpos(25) = ring DIP flex
-% qpos(26) = pinky ab/add
-% qpos(27) = pinky MCP flex
-% qpos(28) = pinky IP flex
-% qpos(29) = pinky DIP flex
-
+% qpos(15) = index 
+state.qpos(15) = 0.70;
 
 % Set the state of the simulated system. The user is expected to fill out
 % the data structure mjState. The size parameters "nq", "nv" and "na" must
@@ -120,10 +106,9 @@ qpos(1) = 0;
 % the struct command:
 % >> state = struct('nq',7, 'nv',6, 'na',0, 'time',0, 'qpos',zeros(7,1), 'qvel',zeros(6,1), 'act',[])
 
-% Easiest way is to update qpos directly from previous state variable read
-% with the mj_get_state function
-mj_set_state(state)
+% state = struct('nq',nq, 'nv',nv, 'na',na, 'time',0, 'qpos',qpos, ...
+%     'qvel',qvel, 'act',state.act)
 
-mj_reset(-1)
+mj_set_state(state)
 
 % hx_close
