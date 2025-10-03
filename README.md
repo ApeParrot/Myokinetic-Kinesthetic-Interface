@@ -10,53 +10,53 @@ All data in this repository pertain to **participant MKk-P1**. Scripts are organ
 
 ## Repository structure
 
-Myokinetic-Kinesthetic-Interface/
-├─ HandKinematics/ # Joint angle & velocity analysis
-│ ├─ kinematics_detection.pynb # Python Jupyter notebook for MediaPipe-based angle extraction
-│
-├─ HandRenderings/ # 3D visualization of hand shapes
-│ ├─ mainSimulator.m # MuJoCo Haptix-based rendering of hand postures
-│ ├─ mjhaptix150/ # Supporting resources for MuJoCo Haptix
-│
-├─ KinestheticHandEvents/ # Parameter search and hand event analysis
-│ ├─ HandEventsByWaveform.m # Scatter plots by waveform (sine vs square)
-│ ├─ HandSensationSearchSpaceComplete.m # Full parameter-space rendering (Gaussian kernel maps)
-│ ├─ HandSensationSearchSpaceNaive.m # Naïve exploration subset
-│ ├─ KinestheticData.mat # Data (Amplitude × Frequency × Waveform × Sensation)
-│
-├─ Likert/ # Likert analysis (Q1–Q4, localization/specificity)
-│ ├─ LikertSeparate.m # Phase-separated diverging stacked plots
-│ ├─ LikertCombined.m # Combined analysis
-│ ├─ LikertAnswers.mat # Collected Likert responses
-│
-├─ TimeVibrations/ # Perceptual time thresholds
-│ ├─ PerceptionTimeAnalysis.m # Computes thresholds from adaptive sequences
-│ ├─ StimulationData/
-│ ├─ StimulationTimingsSite1.mat
-│ ├─ StimulationTimingsSite2.mat
-│ ├─ StimulationTimingsSite3.mat
-│ ├─ StimulationTimingsSite4.mat
-│ ├─ StimulationTimingsSite5.mat
-│ ├─ StimulationTimingsSite6.mat
-│
-├─ VividnessVibrations/ # Amplitude & frequency vividness curves
-│ ├─ Vividness_DataAnalysis.m # Fits sigmoid/exponential models to vividness
-│ ├─ torqueSensAt90.mat # Torque distribution at 90 Hz
-│ ├─ VividnessData/
-│ ├─ site1vividData.mat
-│ ├─ site1vividDataFreq.mat
-│ ├─ site2vividData.mat
-│ ├─ site2vividDataFreq.mat
-│ ├─ site3vividData.mat
-│ ├─ site3vividDataFreq.mat
-│ ├─ site4vividData.mat
-│ ├─ site4vividDataFreq.mat
-│ ├─ site5vividData.mat
-│ ├─ site5vividDataFreq.mat
-│ ├─ site6vividData.mat
-│ ├─ site6vividDataFreq.mat
-│
-└─ README.md
+Myokinetic-Kinesthetic-Interface/ <br />
+├─ HandKinematics/ # Joint angle & velocity analysis <br />
+│ ├─ kinematics_detection.pynb # Python Jupyter notebook for MediaPipe-based angle extraction<br />
+│<br />
+├─ HandRenderings/ # 3D visualization of hand shapes<br />
+│ ├─ mainSimulator.m # MuJoCo Haptix-based rendering of hand postures<br />
+│ ├─ mjhaptix150/ # Supporting resources for MuJoCo Haptix<br />
+│<br />
+├─ KinestheticHandEvents/ # Parameter search and hand event analysis<br />
+│ ├─ HandEventsByWaveform.m # Scatter plots by waveform (sine vs square)<br />
+│ ├─ HandSensationSearchSpaceComplete.m # Full parameter-space rendering (Gaussian kernel maps)<br />
+│ ├─ HandSensationSearchSpaceNaive.m # Naïve exploration subset<br />
+│ ├─ KinestheticData.mat # Data (Amplitude × Frequency × Waveform × Sensation)<br />
+│<br />
+├─ Likert/ # Likert analysis (Q1–Q4, localization/specificity)<br />
+│ ├─ LikertSeparate.m # Phase-separated diverging stacked plots<br />
+│ ├─ LikertCombined.m # Combined analysis<br />
+│ ├─ LikertAnswers.mat # Collected Likert responses<br />
+│<br />
+├─ TimeVibrations/ # Perceptual time thresholds<br />
+│ ├─ PerceptionTimeAnalysis.m # Computes thresholds from adaptive sequences<br />
+│ ├─ StimulationData/<br />
+│ ├─ StimulationTimingsSite1.mat<br />
+│ ├─ StimulationTimingsSite2.mat<br />
+│ ├─ StimulationTimingsSite3.mat<br />
+│ ├─ StimulationTimingsSite4.mat<br />
+│ ├─ StimulationTimingsSite5.mat<br />
+│ ├─ StimulationTimingsSite6.mat<br />
+│<br />
+├─ VividnessVibrations/ # Amplitude & frequency vividness curves<br />
+│ ├─ Vividness_DataAnalysis.m # Fits sigmoid/exponential models to vividness<br />
+│ ├─ torqueSensAt90.mat # Torque distribution at 90 Hz<br />
+│ ├─ VividnessData/<br />
+│ ├─ site1vividData.mat<br />
+│ ├─ site1vividDataFreq.mat<br />
+│ ├─ site2vividData.mat<br />
+│ ├─ site2vividDataFreq.mat<br />
+│ ├─ site3vividData.mat<br />
+│ ├─ site3vividDataFreq.mat<br />
+│ ├─ site4vividData.mat<br />
+│ ├─ site4vividDataFreq.mat<br />
+│ ├─ site5vividData.mat<br />
+│ ├─ site5vividDataFreq.mat<br />
+│ ├─ site6vividData.mat<br />
+│ ├─ site6vividDataFreq.mat<br />
+│<br />
+└─ README.md<br />
 
 ---
 
@@ -70,7 +70,7 @@ Myokinetic-Kinesthetic-Interface/
   - Python ≥3.9
   - `mediapipe`, `numpy`, `pandas`, `matplotlib`, `scipy`
 - **3rd-party tools**
-  - [MuJoCo Haptix](https://mujoco.org/) (for `HandRenderings/mainSimulator.m`)
+  - [MuJoCo Haptix](https://roboti.us/book/haptix.html) (for `HandRenderings/mainSimulator.m`)
 
 ---
 
