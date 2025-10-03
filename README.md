@@ -10,114 +10,107 @@ All data in this repository pertain to **participant MKk-P1**. Scripts are organ
 
 ## Repository structure
 
-Myokinetic-Kinesthetic-Interface/<br />
-├─ HandKinematics<br />
-│ ├─ kinematics_detection.pynb<br />
-├─ HandRenderings<br />
-│ ├─ mainSimulator.m<br />
-│ ├─ mjhaptix150<br />
-├─  KinestheticHandEvents<br />
-│ ├─ HandEventsByWaveform.m<br />
-│ ├─ HandSensationSearchSpaceComplete.m<br />
-│ ├─ HandSensationSearchSpaceNaive.m<br />
-│ ├─ KinestheticData.mat<br />
-├─  Likert<br />
-│ ├─ LikertSeparate.m *script* <br />
-│ ├─ LikertCombined.m *script*<br />
-│ ├─ LikertAnswers.mat *data*<br />
-├─  TimeVibrations<br />
-│ ├─ PerceptionTimeAnalysis.m *script* <br />
-│ ├─ StimulationData<br />
-│ | ├─ StimulationTimingsSite1.mat *data*<br />
-│ | ├─ StimulationTimingsSite2.mat *data*<br />
-│ | ├─ StimulationTimingsSite3.mat *data*<br />
-│ | ├─ StimulationTimingsSite4.mat *data*<br />
-│ | ├─ StimulationTimingsSite5.mat *data*<br />
-│ | ├─ StimulationTimingsSite6.mat *data*<br />
-├─  VividnessVibrations<br />
-│ ├─ Vividness_DataAnalysis.m *script* <br />
-│ ├─ torqueSensAt90.mat *data* <br />
-│ ├─ VividnessData<br />
-│ | ├─ site1vividData.mat *data*<br />
-│ | ├─ site1vividDataFreq.mat *data*<br />
-│ | ├─ site2vividData.mat *data*<br />
-│ | ├─ site2vividDataFreq.mat *data*<br />
-│ | ├─ site3vividData.mat *data*<br />
-│ | ├─ site3vividDataFreq.mat *data*<br />
-│ | ├─ site4vividData.mat *data*<br />
-│ | ├─ site4vividDataFreq.mat *data*<br />
-│ | ├─ site5vividData.mat *data*<br />
-│ | ├─ site5vividDataFreq.mat *data*<br />
-│ | ├─ site6vividData.mat *data*<br />
-│ | ├─ site6vividDataFreq.mat *data*<br />
+Myokinetic-Kinesthetic-Interface/
+├─ HandKinematics/ # Joint angle & velocity analysis
+│ ├─ kinematics_detection.pynb # Python Jupyter notebook for MediaPipe-based angle extraction
+│
+├─ HandRenderings/ # 3D visualization of hand shapes
+│ ├─ mainSimulator.m # MuJoCo Haptix-based rendering of hand postures
+│ ├─ mjhaptix150/ # Supporting resources for MuJoCo Haptix
+│
+├─ KinestheticHandEvents/ # Parameter search and hand event analysis
+│ ├─ HandEventsByWaveform.m # Scatter plots by waveform (sine vs square)
+│ ├─ HandSensationSearchSpaceComplete.m # Full parameter-space rendering (Gaussian kernel maps)
+│ ├─ HandSensationSearchSpaceNaive.m # Naïve exploration subset
+│ ├─ KinestheticData.mat # Data (Amplitude × Frequency × Waveform × Sensation)
+│
+├─ Likert/ # Likert analysis (Q1–Q4, localization/specificity)
+│ ├─ LikertSeparate.m # Phase-separated diverging stacked plots
+│ ├─ LikertCombined.m # Combined analysis
+│ ├─ LikertAnswers.mat # Collected Likert responses
+│
+├─ TimeVibrations/ # Perceptual time thresholds
+│ ├─ PerceptionTimeAnalysis.m # Computes thresholds from adaptive sequences
+│ ├─ StimulationData/
+│ ├─ StimulationTimingsSite1.mat
+│ ├─ StimulationTimingsSite2.mat
+│ ├─ StimulationTimingsSite3.mat
+│ ├─ StimulationTimingsSite4.mat
+│ ├─ StimulationTimingsSite5.mat
+│ ├─ StimulationTimingsSite6.mat
+│
+├─ VividnessVibrations/ # Amplitude & frequency vividness curves
+│ ├─ Vividness_DataAnalysis.m # Fits sigmoid/exponential models to vividness
+│ ├─ torqueSensAt90.mat # Torque distribution at 90 Hz
+│ ├─ VividnessData/
+│ ├─ site1vividData.mat
+│ ├─ site1vividDataFreq.mat
+│ ├─ site2vividData.mat
+│ ├─ site2vividDataFreq.mat
+│ ├─ site3vividData.mat
+│ ├─ site3vividDataFreq.mat
+│ ├─ site4vividData.mat
+│ ├─ site4vividDataFreq.mat
+│ ├─ site5vividData.mat
+│ ├─ site5vividDataFreq.mat
+│ ├─ site6vividData.mat
+│ ├─ site6vividDataFreq.mat
+│
 └─ README.md
+
+---
 
 ## Requirements
 
-- **MATLAB** R2023b (earlier versions may work, not fully tested)
-- **Toolboxes**
+- **MATLAB** R2023b (earlier versions may work but not tested exhaustively)
+- **MATLAB Toolboxes**
   - *Statistics and Machine Learning Toolbox*
   - *Curve Fitting Toolbox*
-- **3rd-party plotting utilities** (bundled)  
-  `frank-pk-DataViz-3.2.3.0` for `daboxplot` / `dabarplot`
-- **Python** 3.9 or newer to install Mujoco, and to view jupiter notebook
+- **Python (for kinematics_detection.pynb)**
+  - Python ≥3.9
+  - `mediapipe`, `numpy`, `pandas`, `matplotlib`, `scipy`
+- **3rd-party tools**
+  - [MuJoCo Haptix](https://mujoco.org/) (for `HandRenderings/mainSimulator.m`)
 
 ---
 
-## Quick start
+## How to reproduce the manuscript figures
 
-1. Clone or unzip the repository.  
-2. Open MATLAB and set the repository root as your current folder.
-3. Run the scripts. Paths to data and utilities are added automatically via `addpath`.
+### 1) Hand kinematics (joint angles & velocities)
+- Script: `HandKinematics/kinematics_detection.pynb`  
+- Uses MediaPipe to estimate angles from video, compares MKk-P1 vs TMRk datasets.  
+- Manuscript: Fig. 3C-F,J-M and Fig. S3 (joint angle subtraction, velocity correlations).
 
----
+### 2) Hand renderings
+- Script: `HandRenderings/mainSimulator.m`  
+- Generates 3D MuJoCo Haptix visualizations of hand shapes (open/close percepts).  
+- Manuscript: Fig. 3G–I (rendered hand shapes).
 
-## How to reproduce the figures
+### 3) Kinesthetic hand events
+- Scripts: `HandEventsByWaveform.m`, `HandSensationSearchSpaceComplete.m`, `HandSensationSearchSpaceNaive.m`  
+- Data: `KinestheticHandEvents/KinestheticData.mat`  
+- Manuscript: Fig. 2B and Fig. S2A,B (search-space scatter maps and Gaussian density maps).
 
-### 1) Parameter search maps
-- **Scripts**: `ParamMap_Waveform.m`, `ParamMap_SensedHotspots.m`  
-- **Data**: `KinestheticData_updateV4.mat`  
-- **Manuscript**: Fig. 2B (search-space visualization & hot-spot rendering)
+### 4) Likert analysis
+- Scripts: `LikertCombined.m`, `LikertSeparate.m`  
+- Data: `LikertAnswers.mat`  
+- Manuscript: Fig. 4, Fig. S4 (localization/specificity answers).
 
-### 2) Likert analysis
-- **Scripts**: `Likert_DivergingPlot.m`, `Likert_DivergingPlot_PhaseSplit.m`  
-- **Manuscript**: Fig. 4 (localization/specificity Likert questions)
+### 5) Time thresholds
+- Script: `TimeVibrations/PerceptionTimeAnalysis.m`  
+- Data: `StimulationData/*.mat`  
+- Manuscript: Fig. 5A–B; Fig. S5.
 
-### 3) Time thresholds
-- **Script**: `FINAL_SCRIPT_Analysis_TimeThresholds.m`  
-- **Data**: `StimulationData/*.mat`  
-- **Manuscript**: Fig. 5A–B; Fig. S5
-
-### 4) Vividness (amplitude & frequency)
-- **Script**: `FINAL_SCRIPT_Analysis_Vividness.m`  
-- **Data**: `VividnessData/*.mat`, `torqueSensAt90.mat`  
-- **Manuscript**: Fig. 5C–D; Fig. S6
-
----
-
-## Script–figure cheat sheet
-
-| Script                                  | Data source(s)                      | Manuscript figure(s)           |
-|-----------------------------------------|-------------------------------------|--------------------------------|
-| `ParamMap_Waveform.m`                   | `KinestheticData_updateV4.mat`      | Fig. 2B                        |
-| `ParamMap_SensedHotspots.m`             | `KinestheticData_updateV4.mat`      | Fig. 2B                        |
-| `Likert_DivergingPlot*.m`               | embedded Qs                         | Fig. 4                         |
-| `FINAL_SCRIPT_Analysis_TimeThresholds.m`| `StimulationData/*.mat`             | Fig. 5A–B; Fig. S5             |
-| `FINAL_SCRIPT_Analysis_Vividness.m`     | `VividnessData/*.mat`, torque file  | Fig. 5C–D; Fig. S6             |
-
-
----
-
-## Data use
-
-- All datasets are **de-identified** and pertain to **participant MKk-P1**.  
-- Research-only, non-commercial use unless otherwise agreed with the authors.
+### 6) Vividness analysis
+- Script: `VividnessVibrations/Vividness_DataAnalysis.m`  
+- Data: `VividnessData/*.mat`, `torqueSensAt90.mat`  
+- Manuscript: Fig. 5C–D; Fig. S6.
 
 ---
 
 ## Citation
 
-If you use this code or data, please cite the manuscript:
+If you use this code or data, please cite:
 
 > Masiero F., Gentile M., Gherardini M., La Frazia E., Moore C. H., Kilic B. Ü., Ianniciello V., Reho R., Mori T., Paggetti F., Andreani L., Whitton S. A., Marasco P. D., Cipriani C.  
 > *Coordinated hand movement sensation revealed through an implanted magnetic prosthetic kinesthetic interface.* [Journal / year / DOI]
@@ -126,7 +119,7 @@ If you use this code or data, please cite the manuscript:
 
 ## License
 
-- **Code**: MIT License 
+- **Code**: MIT License  
 - **Data**: research-only, non-commercial use
 
 ---
@@ -136,5 +129,3 @@ If you use this code or data, please cite the manuscript:
 For questions or issues:
 - Open a GitHub issue, or  
 - Contact the corresponding authors listed in the manuscript.
-
----
