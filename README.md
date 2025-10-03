@@ -10,26 +10,17 @@ All data in this repository pertain to **participant MKk-P1**. Scripts are organ
 
 ## Repository structure
 
-├─ HandKinematics
-
-│ ├─ kinematics_detection.pynb
-
-├─ HandRenderings
-
-│ ├─ mainSimulator.m
-
-│ ├─ mjhaptix150
-
-├─  KinestheticHandEvents
-
-│ ├─ HandEventsByWaveform.m
-
-│ ├─ HandSensationSearchSpaceComplete.m
-
-│ ├─ HandSensationSearchSpaceNaive
-
-│ ├─ KinestheticData.mat
-
+Myokinetic-Kinesthetic-Interface/<br />
+├─ HandKinematics<br />
+│ ├─ kinematics_detection.pynb<br />
+├─ HandRenderings<br />
+│ ├─ mainSimulator.m<br />
+│ ├─ mjhaptix150<br />
+├─  KinestheticHandEvents<br />
+│ ├─ HandEventsByWaveform.m<br />
+│ ├─ HandSensationSearchSpaceComplete.m<br />
+│ ├─ HandSensationSearchSpaceNaive<br />
+│ ├─ KinestheticData.mat<br />
 └─ README.md
 
 ## Requirements
