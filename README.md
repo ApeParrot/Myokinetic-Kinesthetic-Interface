@@ -19,8 +19,37 @@ Myokinetic-Kinesthetic-Interface/<br />
 ├─  KinestheticHandEvents<br />
 │ ├─ HandEventsByWaveform.m<br />
 │ ├─ HandSensationSearchSpaceComplete.m<br />
-│ ├─ HandSensationSearchSpaceNaive<br />
+│ ├─ HandSensationSearchSpaceNaive.m<br />
 │ ├─ KinestheticData.mat<br />
+├─  Likert<br />
+│ ├─ LikertSeparate.m *script* <br />
+│ ├─ LikertCombined.m *script*<br />
+│ ├─ LikertAnswers.mat *data*<br />
+├─  TimeVibrations<br />
+│ ├─ PerceptionTimeAnalysis.m *script* <br />
+│ ├─ StimulationData<br />
+│ | ├─ StimulationTimingsSite1.mat *data*<br />
+│ | ├─ StimulationTimingsSite2.mat *data*<br />
+│ | ├─ StimulationTimingsSite3.mat *data*<br />
+│ | ├─ StimulationTimingsSite4.mat *data*<br />
+│ | ├─ StimulationTimingsSite5.mat *data*<br />
+│ | ├─ StimulationTimingsSite6.mat *data*<br />
+├─  VividnessVibrations<br />
+│ ├─ Vividness_DataAnalysis.m *script* <br />
+│ ├─ torqueSensAt90.mat *data* <br />
+│ ├─ VividnessData<br />
+│ | ├─ site1vividData.mat *data*<br />
+│ | ├─ site1vividDataFreq.mat *data*<br />
+│ | ├─ site2vividData.mat *data*<br />
+│ | ├─ site2vividDataFreq.mat *data*<br />
+│ | ├─ site3vividData.mat *data*<br />
+│ | ├─ site3vividDataFreq.mat *data*<br />
+│ | ├─ site4vividData.mat *data*<br />
+│ | ├─ site4vividDataFreq.mat *data*<br />
+│ | ├─ site5vividData.mat *data*<br />
+│ | ├─ site5vividDataFreq.mat *data*<br />
+│ | ├─ site6vividData.mat *data*<br />
+│ | ├─ site6vividDataFreq.mat *data*<br />
 └─ README.md
 
 ## Requirements
@@ -31,6 +60,7 @@ Myokinetic-Kinesthetic-Interface/<br />
   - *Curve Fitting Toolbox*
 - **3rd-party plotting utilities** (bundled)  
   `frank-pk-DataViz-3.2.3.0` for `daboxplot` / `dabarplot`
+- **Python** 3.9 or newer to install Mujoco, and to view jupiter notebook
 
 ---
 
