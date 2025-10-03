@@ -122,8 +122,9 @@ qpos(1) = 0;
 
 % Easiest way is to update qpos directly from previous state variable read
 % with the mj_get_state function
-state.qpos(12) = 0.6;
-mj_set_state(state)
+% state.qpos(12) = 0.6;
+control.ctrl(5) = 1.5;
+mj_update(control)
 
 % mj_reset(-1)
 
