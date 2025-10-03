@@ -10,27 +10,26 @@ All data in this repository pertain to **participant MKk-P1**. Scripts are organ
 
 ## Repository structure
 
-├─ Codes/ % Analysis scripts
-│ ├─ FINAL_SCRIPT_Analysis_TimeThresholds.m
-│ ├─ FINAL_SCRIPT_Analysis_Vividness.m
-│ ├─ Likert_DivergingPlot.m
-│ ├─ Likert_DivergingPlot_PhaseSplit.m
-│ ├─ ParamMap_Waveform.m
-│ ├─ ParamMap_SensedHotspots.m
-│ ├─ utils/ % helper functions
-│ └─ frank-pk-DataViz-3.2.3.0/ % 3rd-party plotting utilities
-│
-├─ StimulationData/ % Per-site staircase/adaptive sequences
-│ ├─ StimulationTimingsSite1.mat
-│ └─ ...
-│
-├─ VividnessData/ % Amplitude & frequency vividness datasets
-│ ├─ site1vividData.mat
-│ ├─ ...
-│ └─ site6vividDataFreq.mat
-│
-├─ KinestheticData_updateV4.mat % Parameter search data
-├─ torqueSensAt90.mat % Torque distribution at 90 Hz
+├─ HandKinematics
+
+│ ├─ kinematics_detection.pynb
+
+├─ HandRenderings
+
+│ ├─ mainSimulator.m
+
+│ ├─ mjhaptix150
+
+├─  KinestheticHandEvents
+
+│ ├─ HandEventsByWaveform.m
+
+│ ├─ HandSensationSearchSpaceComplete.m
+
+│ ├─ HandSensationSearchSpaceNaive
+
+│ ├─ KinestheticData.mat
+
 └─ README.md
 
 ## Requirements
@@ -46,8 +45,9 @@ All data in this repository pertain to **participant MKk-P1**. Scripts are organ
 
 ## Quick start
 
-1. Open MATLAB and set the repository root as your current folder.
-2. Run the scripts in `Codes/`. Paths to data and utilities are added automatically via `addpath`.
+1. Clone or unzip the repository.  
+2. Open MATLAB and set the repository root as your current folder.
+3. Run the scripts. Paths to data and utilities are added automatically via `addpath`.
 
 ---
 
