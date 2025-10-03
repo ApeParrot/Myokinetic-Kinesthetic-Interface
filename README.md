@@ -1,34 +1,119 @@
-This repo contains data and codes for data analysis of the paper: Masiero, et al. "Coordinated hand movement sensation revealed through an implanted magnetic prosthetic kinesthetic interface."
+# Coordinated Hand Movement Sensation – Analysis & Figure Code
 
-To run the data analysis code the following dependencies are required:
-- MATLAB R2020b or more recent (may be compatible even with older versions)
-- Python 3.9 (may be compatible even with older versions)
+This repository contains the **exact MATLAB code and data** used to generate the figures and tables for the manuscript:
 
-MUJOCO
+**“Coordinated hand movement sensation revealed through an implanted magnetic prosthetic kinesthetic interface.”**
 
-MuJoCo is an advanced simulator for multi-body dynamics with contact. It was developed by Roboti LLC and was available as a commercial product from 2015 to 2021.
+All data in this repository pertain to **participant MKk-P1**. Scripts are organized to **reproduce the manuscript figures** (main and supplementary) from raw `.mat` files with minimal setup.
 
-From October 2021, DeepMind has acquired MuJoCo and has made it freely available as an open source project under the Apache 2.0 license. The updated homepage is mujoco.org. The software distribution is available at github.com/deepmind/mujoco.
+---
 
-Installation of Mujoco can be performed with the following Python commands:
+## Repository structure
 
-python.exe -m pip install --upgrade pip
+├─ Codes/ % Analysis scripts
+│ ├─ FINAL_SCRIPT_Analysis_TimeThresholds.m
+│ ├─ FINAL_SCRIPT_Analysis_Vividness.m
+│ ├─ Likert_DivergingPlot.m
+│ ├─ Likert_DivergingPlot_PhaseSplit.m
+│ ├─ ParamMap_Waveform.m
+│ ├─ ParamMap_SensedHotspots.m
+│ ├─ utils/ % helper functions
+│ └─ frank-pk-DataViz-3.2.3.0/ % 3rd-party plotting utilities
+│
+├─ StimulationData/ % Per-site staircase/adaptive sequences
+│ ├─ StimulationTimingsSite1.mat
+│ └─ ...
+│
+├─ VividnessData/ % Amplitude & frequency vividness datasets
+│ ├─ site1vividData.mat
+│ ├─ ...
+│ └─ site6vividDataFreq.mat
+│
+├─ KinestheticData_updateV4.mat % Parameter search data
+├─ torqueSensAt90.mat % Torque distribution at 90 Hz
+└─ README.md
 
-pip install mujoco
+## Requirements
+
+- **MATLAB** R2023b (earlier versions may work, not fully tested)
+- **Toolboxes**
+  - *Statistics and Machine Learning Toolbox*
+  - *Curve Fitting Toolbox*
+- **3rd-party plotting utilities** (bundled)  
+  `frank-pk-DataViz-3.2.3.0` for `daboxplot` / `dabarplot`
+
+---
+
+## Quick start
+
+1. Open MATLAB and set the repository root as your current folder.
+2. Run the scripts in `Codes/`. Paths to data and utilities are added automatically via `addpath`.
+
+---
+
+## How to reproduce the figures
+
+### 1) Parameter search maps
+- **Scripts**: `ParamMap_Waveform.m`, `ParamMap_SensedHotspots.m`  
+- **Data**: `KinestheticData_updateV4.mat`  
+- **Manuscript**: Fig. 2B (search-space visualization & hot-spot rendering)
+
+### 2) Likert analysis
+- **Scripts**: `Likert_DivergingPlot.m`, `Likert_DivergingPlot_PhaseSplit.m`  
+- **Manuscript**: Fig. 4 (localization/specificity Likert questions)
+
+### 3) Time thresholds
+- **Script**: `FINAL_SCRIPT_Analysis_TimeThresholds.m`  
+- **Data**: `StimulationData/*.mat`  
+- **Manuscript**: Fig. 5A–B; Fig. S5
+
+### 4) Vividness (amplitude & frequency)
+- **Script**: `FINAL_SCRIPT_Analysis_Vividness.m`  
+- **Data**: `VividnessData/*.mat`, `torqueSensAt90.mat`  
+- **Manuscript**: Fig. 5C–D; Fig. S6
+
+---
+
+## Script–figure cheat sheet
+
+| Script                                  | Data source(s)                      | Manuscript figure(s)           |
+|-----------------------------------------|-------------------------------------|--------------------------------|
+| `ParamMap_Waveform.m`                   | `KinestheticData_updateV4.mat`      | Fig. 2B                        |
+| `ParamMap_SensedHotspots.m`             | `KinestheticData_updateV4.mat`      | Fig. 2B                        |
+| `Likert_DivergingPlot*.m`               | embedded Qs                         | Fig. 4                         |
+| `FINAL_SCRIPT_Analysis_TimeThresholds.m`| `StimulationData/*.mat`             | Fig. 5A–B; Fig. S5             |
+| `FINAL_SCRIPT_Analysis_Vividness.m`     | `VividnessData/*.mat`, torque file  | Fig. 5C–D; Fig. S6             |
 
 
+---
 
-MUJOCO HAPTIX
+## Data use
 
-MuJoCo HAPTIX is a free end-user product (https://roboti.us/book/haptix.html). It relies on the legacy commercial MuJoCo Pro library for simulation and visualization, and extends it with a GUI as well as optional real-time motion capture. User code can interact with it via a socket API. This API does not impose restrictions in terms of simulation or visualization, however it lacks the efficiency and flexibility of the shared-memory API which is available when MuJoCo Pro is linked directly to user code.
+- All datasets are **de-identified** and pertain to **participant MKk-P1**.  
+- Research-only, non-commercial use unless otherwise agreed with the authors.
 
-Mujoco Haptix is downloaded directly from here:
-https://www.roboti.us/download.html
+---
 
-The software distribution contains the necessary communication libraries for C/C++ and for MATLAB, in directories "apicpp" and "apimex" respectively. To use the C/C++ API, include "haptix.h" in your code and link with the stub library "mjhaptix_user.lib" which will in turn load the actual library "mjhaptix_user.dll" at runtime. To use the MATLAB API, add the directory "apimex" to the MATLAB path. Note however that the simple flavor of the MATLAB API is common to MuJoCo and Gazebo, thus the corresponding .m files have the same names and calling conventions. If you are installing the API for both simulators on the same machine, be careful to set the path to the simulator you want to work with.
+## Citation
 
-The MATLAB API is a straightforward adaptation of the C/C++ API. Its software architecture however is somewhat unusual from a MATLAB perspective. The C/C++ API is contained in a single dynamic library. In contrast, the usual mode of operation in MATLAB would be to have a separate .m or .mex file for each API function. The problem with the latter approach is that we are using a TCP/IP socket connection, which is established at the beginning of the session and then needs to be maintained. Such maintenance is difficult to achieve if we were to use separate .m or .mex files for each API function, especially since the socket handle created in the underlying C++ code is not a valid MATLAB object. One way around this is to rely on MATLAB's native Java sockets instead - which we have used previously, but they have proven to be slower and less reliable compared to our C++ implementation.
+If you use this code or data, please cite the manuscript:
 
-Thus the MATLAB API to MuJoCo HAPTIX is based on a single mex file "mjhx.mexw64". This file automatically locks itself within the MATLAB workspace when a connection to the simulator is established, and automatically unlocks itself when the connection is closed. The user can call it directly (as summarized in the built-in help) but we also provide .m wrappers matching the C/C++ syntax to the extent possible.
+> Masiero F., Gentile M., Gherardini M., La Frazia E., Moore C. H., Kilic B. Ü., Ianniciello V., Reho R., Mori T., Paggetti F., Andreani L., Whitton S. A., Marasco P. D., Cipriani C.  
+> *Coordinated hand movement sensation revealed through an implanted magnetic prosthetic kinesthetic interface.* [Journal / year / DOI]
 
-Unlike the C/C++ API where most functions return success or error codes, in the MATLAB API errors are generated using MATLAB's standard error handling mechanism, i.e. error messages are printed in the command window and the function terminates.
+---
+
+## License
+
+- **Code**: MIT License 
+- **Data**: research-only, non-commercial use
+
+---
+
+## Contact
+
+For questions or issues:
+- Open a GitHub issue, or  
+- Contact the corresponding authors listed in the manuscript.
+
+---

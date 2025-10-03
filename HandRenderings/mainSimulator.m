@@ -85,6 +85,8 @@ qpos = zeros(nq,1);
 qvel = zeros(nv,1);
 qpos(1) = 0;
 
+
+
 % Description of the simulators DoFs:
 % qpos(1:3) = hand position in space
 % qpos(4:6) = hand orientation in space
@@ -122,9 +124,68 @@ qpos(1) = 0;
 
 % Easiest way is to update qpos directly from previous state variable read
 % with the mj_get_state function
-% state.qpos(12) = 0.6;
-control.ctrl(5) = 1.5;
-mj_update(control)
+
+
+% Import the CSV as a table
+T = readtable('joint_angle_second_last.csv');
+
+% Subtract Pi and take absolute value for both columns
+T.Second_Angle = abs(T.Second_Angle - pi);
+T.Last_Angle   = abs(T.Last_Angle   - pi);
+
+% Get unique participant sessions from the table
+unique_sessions = unique(T.Session);
+
+% Prompt user to select a session from the list
+[idx_session, tf] = listdlg('PromptString', 'Select a participant session:', ...
+                           'SelectionMode', 'single', ...
+                           'ListString', unique_sessions);
+
+if ~tf
+    error('No session selected. Exiting.');
+end
+selected_session = unique_sessions{idx_session};
+
+% Filter the table for the selected session
+T_selected = T(strcmp(T.Session, selected_session), :);
+
+% Indices in state.qpos to replace (as given)
+qpos_idx = [12 13 14 16 17 18 19 20 21 23 24 25 27 28 29];
+qpos_idx = qpos_idx - 7;
+% Prompt user to select time point: 1=Second Angle, 2=Last Angle
+selection = input('Select the time point to use (1=Second Angle, 2=Last Angle): ');
+
+if selection == 1
+    vals = T_selected.Second_Angle(1:15);  % Assuming first 15 entries correspond to joints
+elseif selection == 2
+    vals = T_selected.Last_Angle(1:15);
+else
+    error('Input must be 1 or 2');
+end
+
+% Initialize state.qpos if not existing
+if ~exist('state', 'var') || ~isfield(state, 'qpos')
+    state.qpos = zeros(30, 1); % Adjust size as needed
+end
+
+% Assign selected values to state.qpos at specified indices
+for k = 1:numel(qpos_idx)
+    %state.qpos(qpos_idx(k)) = vals(k);
+    control.ctrl(qpos_idx(k)) = vals(k);
+end
+
+% Display updated qpos values
+disp('Updated state.qpos values at specified indices:');
+disp(state.qpos(qpos_idx));
+
+
+%state.qpos(11) = 1.55;
+control.ctrl(4) = 1.30;
+
+%state.qpos(11) = 0.93;
+
+%mj_set_state(state) % instead, use... set_control 
+mj_update(control) % instead, use... set_control 
 
 % mj_reset(-1)
 
